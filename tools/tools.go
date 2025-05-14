@@ -27,6 +27,8 @@ func main() {
 	_, _ = fmt.Scanln(&mode)
 	mode = strings.ToLower(mode)
 
+	// TODO: Add a context loop
+
 	if mode == "q" {
 		os.Exit(0)
 	}
@@ -47,12 +49,11 @@ func main() {
 		if err != nil {
 			log.Fatal(err)
 		}
-	}
-
-	if mode == "d" {
-		err := DeleteQuote(quoteID)
-		if err != nil {
-			log.Fatal(err)
+		if mode == "d" {
+			err := DeleteQuote(quoteID)
+			if err != nil {
+				log.Fatal(err)
+			}
 		}
 	}
 
