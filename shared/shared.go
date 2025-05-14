@@ -8,6 +8,8 @@ import (
 	"quotes/quotes"
 )
 
+// Shared functionalities will be included here to avoid circular dependencies
+
 func InitDatabase() {
 	var err error
 	db := database.DBConn

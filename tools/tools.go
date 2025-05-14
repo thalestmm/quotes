@@ -12,6 +12,8 @@ import (
 	"strings"
 )
 
+// Internal admin tooling
+
 func main() {
 	shared.InitDatabase()
 	reader := bufio.NewReader(os.Stdin)
@@ -33,13 +35,10 @@ func main() {
 	}
 
 	quote, err := AddNewBook(input)
-
 	if err != nil {
 		panic(err)
 	}
-
 	log.Printf("[Object created] ID: %d | Text: %s | Author: %s", quote.ID, quote.Text, quote.Author)
-
 }
 
 type QuoteInput struct {

@@ -18,10 +18,16 @@ func setupRoutes(app *fiber.App) {
 	v1.Get("/", func(c *fiber.Ctx) error {
 		return c.SendString("Index")
 	})
-	v1.Get("/quotes/:id", func(c *fiber.Ctx) error {
-		return quotes.GetQuote(c)
-	})
-	v1.Get("/quotes", func(c *fiber.Ctx) error {
+
+	// Quotes functionality
+	q := v1.Group("/quotes")
+	q.Get("/", func(c *fiber.Ctx) error {
 		return quotes.GetQuotes(c)
+	})
+	q.Get("/random", func(c *fiber.Ctx) error {
+		return quotes.GetRandomQuote(c)
+	})
+	q.Get("/:id", func(c *fiber.Ctx) error {
+		return quotes.GetQuote(c)
 	})
 }
