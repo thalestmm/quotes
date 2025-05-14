@@ -8,7 +8,10 @@ import (
 	"net/http"
 )
 
-func JSONFromEndpoint(c *fiber.Ctx, endpoint string) (map[string] interface, error) {
+func JSONFromEndpoint(c *fiber.Ctx, endpoint string) (
+	map[string]any,
+	error,
+) {
 	// Make a request to the JSON API
 	url := "http://localhost:3000/api/v1" + endpoint
 	resp, err := http.Get(url)
