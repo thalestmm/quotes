@@ -5,18 +5,19 @@ import (
 	"quotes/quotes"
 )
 
-func setupRoutes(app *fiber.App) {
+func SetupRoutes(app *fiber.App) {
 	// FRONTEND
-	app.Get("/", func(c *fiber.Ctx) error {
-		return c.SendString("Hello, World!")
-	})
+	app.Get("/", IndexRequest)
 
 	// API
 	api := app.Group("/api")
-	v1 := api.Group("/v1")
 
+	// V1
+	v1 := api.Group("/v1")
 	v1.Get("/", func(c *fiber.Ctx) error {
-		return c.SendString("Index")
+		return c.JSON(fiber.Map{
+			"title": "V1 index",
+		})
 	})
 
 	// Quotes functionality

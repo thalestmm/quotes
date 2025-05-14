@@ -15,6 +15,8 @@ type Quote struct {
 	Author string `json:"author"`
 }
 
+// TODO: Check if quotes have "" already or not
+
 func GetQuote(c *fiber.Ctx) error {
 	db := database.DBConn
 	id := c.Params("id")
