@@ -92,6 +92,13 @@ type QuoteInput struct {
 	Author string
 }
 
+func GetAllQuotes() ([]q.Quote, error) {
+	db := database.DBConn
+	var quotes []q.Quote
+	result := db.Find(&quotes)
+	return quotes, result.Error
+}
+
 func AddNewQuote(input QuoteInput) (q.Quote, error) {
 	if input.Text == "" {
 		return *new(q.Quote), errors.New("text cannot be blank")
@@ -128,13 +135,6 @@ func UpdateQuote(id uint, input QuoteInput) (q.Quote, error) {
 	db.Save(&quote)
 
 	return quote, nil
-}
-
-func GetAllQuotes() ([]q.Quote, error) {
-	db := database.DBConn
-	var quotes []q.Quote
-	result := db.Find(&quotes)
-	return quotes, result.Error
 }
 
 func DeleteQuote(id uint) error {
