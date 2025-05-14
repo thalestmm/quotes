@@ -22,6 +22,7 @@ func main() {
 	var quoteAuthor string
 
 	fmt.Println("Type the quote text: ")
+	// Read all words from the current terminal line
 	quoteText, _ = reader.ReadString('\n')
 	quoteText = strings.TrimSpace(quoteText)
 
