@@ -6,6 +6,7 @@ import (
 	"log"
 	"quotes/database"
 	"quotes/quotes"
+	"quotes/users"
 )
 
 // Shared functionalities will be included here to avoid circular dependencies
@@ -22,5 +23,7 @@ func InitDatabase() {
 	database.DBConn = db
 	log.Println("Connection opened to database")
 	db.AutoMigrate(&quotes.Quote{})
+	db.AutoMigrate(&users.User{})
+	db.AutoMigrate(&users.Admin{})
 	log.Println("Database migrated")
 }
